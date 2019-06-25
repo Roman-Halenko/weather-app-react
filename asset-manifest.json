@@ -1,0 +1,15 @@
+{
+  "main.css": "/static/css/main.3aec8d16.chunk.css",
+  "main.js": "/static/js/main.eb5f3f8c.chunk.js",
+  "main.js.map": "/static/js/main.eb5f3f8c.chunk.js.map",
+  "runtime~main.js": "/static/js/runtime~main.c5541365.js",
+  "runtime~main.js.map": "/static/js/runtime~main.c5541365.js.map",
+  "static/js/2.aa02fd55.chunk.js": "/static/js/2.aa02fd55.chunk.js",
+  "static/js/2.aa02fd55.chunk.js.map": "/static/js/2.aa02fd55.chunk.js.map",
+  "index.html": "/index.html",
+  "precache-manifest.284982f762e6f29394b25cda3d00ab09.js": "/precache-manifest.284982f762e6f29394b25cda3d00ab09.js",
+  "service-worker.js": "/service-worker.js",
+  "static/css/main.3aec8d16.chunk.css.map": "/static/css/main.3aec8d16.chunk.css.map",
+  "static/media/main.sass": "/static/media/cold-daylight.008c9c8c.jpg",
+  "static/media/weather-icons.min.css": "/static/media/weathericons-regular-webfont.ecaf8b48.svg"
+}
