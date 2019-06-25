@@ -8,15 +8,15 @@ class Article extends Component {
 
   render() {
     const {article} = this.props
-    const body = this.state.isOpen && <section>{article.content}</section>
+    const body = <section>{article.content}</section>
     return (
       <div>
-        <h2>{article.title}</h2>
-        {body}
-        <p>Additional text</p>
         <button onClick={this.clickHandle}>
           {this.state.isOpen ? 'Close' : 'Open'}
         </button>
+        <h2>{article.title}</h2>
+        {this.state.isOpen ? body : ''}
+        <p>Additional text</p>
       </div>
     )
   }
