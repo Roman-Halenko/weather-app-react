@@ -20,12 +20,12 @@ self.__precacheManifest = [
     "url": "/weather-app-react/static/media/cold-daylight.008c9c8c.jpg"
   },
   {
-    "revision": "1cd48d78f06d33973d9d761d426e69bf",
-    "url": "/weather-app-react/static/media/weathericons-regular-webfont.1cd48d78.woff2"
-  },
-  {
     "revision": "8cac70ebda3f23ce472110d9f21e8593",
     "url": "/weather-app-react/static/media/weathericons-regular-webfont.8cac70eb.woff"
+  },
+  {
+    "revision": "1cd48d78f06d33973d9d761d426e69bf",
+    "url": "/weather-app-react/static/media/weathericons-regular-webfont.1cd48d78.woff2"
   },
   {
     "revision": "4b658767da6bd92ce2addb3ce512784d",
