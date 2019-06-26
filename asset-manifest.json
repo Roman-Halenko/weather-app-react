@@ -1,15 +1,15 @@
 {
-  "main.css": "/static/css/main.3aec8d16.chunk.css",
-  "main.js": "/static/js/main.eb5f3f8c.chunk.js",
-  "main.js.map": "/static/js/main.eb5f3f8c.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.c5541365.js",
-  "runtime~main.js.map": "/static/js/runtime~main.c5541365.js.map",
-  "static/js/2.aa02fd55.chunk.js": "/static/js/2.aa02fd55.chunk.js",
-  "static/js/2.aa02fd55.chunk.js.map": "/static/js/2.aa02fd55.chunk.js.map",
-  "index.html": "/index.html",
-  "precache-manifest.bc418e232d08b9c0a8ac31c8589b69e5.js": "/precache-manifest.bc418e232d08b9c0a8ac31c8589b69e5.js",
-  "service-worker.js": "/service-worker.js",
-  "static/css/main.3aec8d16.chunk.css.map": "/static/css/main.3aec8d16.chunk.css.map",
-  "static/media/main.sass": "/static/media/cold-daylight.008c9c8c.jpg",
-  "static/media/weather-icons.min.css": "/static/media/weathericons-regular-webfont.ecaf8b48.svg"
+  "main.css": "/weather-app-react/static/css/main.2da4a7db.chunk.css",
+  "main.js": "/weather-app-react/static/js/main.eb5f3f8c.chunk.js",
+  "main.js.map": "/weather-app-react/static/js/main.eb5f3f8c.chunk.js.map",
+  "runtime~main.js": "/weather-app-react/static/js/runtime~main.56031b9a.js",
+  "runtime~main.js.map": "/weather-app-react/static/js/runtime~main.56031b9a.js.map",
+  "static/js/2.aa02fd55.chunk.js": "/weather-app-react/static/js/2.aa02fd55.chunk.js",
+  "static/js/2.aa02fd55.chunk.js.map": "/weather-app-react/static/js/2.aa02fd55.chunk.js.map",
+  "index.html": "/weather-app-react/index.html",
+  "precache-manifest.3d6e55331c458e2b6e02f52ec02aac4e.js": "/weather-app-react/precache-manifest.3d6e55331c458e2b6e02f52ec02aac4e.js",
+  "service-worker.js": "/weather-app-react/service-worker.js",
+  "static/css/main.2da4a7db.chunk.css.map": "/weather-app-react/static/css/main.2da4a7db.chunk.css.map",
+  "static/media/main.sass": "/weather-app-react/static/media/cold-daylight.008c9c8c.jpg",
+  "static/media/weather-icons.min.css": "/weather-app-react/static/media/weathericons-regular-webfont.ecaf8b48.svg"
 }
