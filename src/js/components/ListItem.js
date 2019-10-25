@@ -1,14 +1,12 @@
 import React from 'react';
 
-export function ListItem(props) {
+function ListItem({city, select}) {
 
-    const {id, name, country} = props.city;
-
-    function selectCity() {
-        console.log(id);
-    }
+    const {name, country} = city;
 
     return (
-        <li onClick={selectCity}>{name}, {country}</li>
+        <li onClick={() => select(city)}>{name}, {country}</li>
     )
 }
+
+export default ListItem;

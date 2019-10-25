@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
-import {ListItem} from './ListItem';
+import ListItem from './ListItem';
 
-export class AutoComplete extends Component {
+class AutoComplete extends Component {
 
     state = {};
 
@@ -11,8 +11,16 @@ export class AutoComplete extends Component {
 
         return (
             <ul className="hint-list">
-                {foundCities.map(city => <ListItem key={city.id} city={city}/>)}
+                {foundCities.map(city => (
+                    <ListItem
+                        select={this.props.select}
+                        key={city.id}
+                        city={city}
+                    />
+                ))}
             </ul>
         )
     }
 }
+
+export default AutoComplete;
