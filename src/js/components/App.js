@@ -13,12 +13,16 @@ export default class App extends Component {
     }
 
     onSearchInput = ( {target} ) => {
-        if (target.value === '' || target.value === ' ') {
+        let userInput = target.value.replace(/[^\w\s]/gi, '');
+        if (userInput === '' || userInput === ' ') {
             this.setState({foundCities: []});
         } else {
-            let regex = new RegExp(`^${target.value}`, 'i');
-            let relevantСities = cityList.filter(e => e.name.match(regex)).sort();
+            let regex = new RegExp(userInput, 'i');
+            let relevantСities = cityList.filter( e => e.name.match(regex) ).sort();
             let closestCities = relevantСities.slice(0, 6);
+            closestCities.forEach(e => {
+                e.html = e.name.replace(regex, match => `<u>${match}</u>`) + `, ${e.country}`
+            });
             this.setState({foundCities: closestCities});
         }
     }

@@ -13,9 +13,9 @@ export default class Search extends Component {
                     type='search'
                     onChange={onSearchInput}
                 />
-                {foundCities.length > 0
+                {foundCities.length
                     ? <AutoComplete select={this.props.select} foundCities={foundCities}/>
-                    : ''}
+                    : null}
             </div>
         )
     }

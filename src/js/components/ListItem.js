@@ -2,10 +2,10 @@ import React from 'react';
 
 function ListItem({city, select}) {
 
-    const {name, country} = city;
+    const {html} = city;
 
     return (
-        <li onClick={() => select(city)}>{name}, {country}</li>
+        <li onClick={() => select(city)} dangerouslySetInnerHTML={{__html: html}}></li>
     )
 }
 
