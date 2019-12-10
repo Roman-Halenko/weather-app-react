@@ -4,13 +4,19 @@ import {API} from "../Data"
 
 export default class CurrentWeather extends Component {
     state = {
-        data: {}
+        data: {},
+        availableUnits: ['C', 'F', 'K'],
+        isAvailableUnitsShown: false
     }
 
     getWeatherData = (id) => {
         fetch( API(id) )
             .then(response => response.json())
             .then(response => this.setState({ data: response }))
+    }
+
+    toggleAvailableUnitsVisib = () => {
+        this.setState({isAvailableUnitsShown: !this.state.isAvailableUnitsShown});
     }
 
     componentDidMount() {
@@ -24,13 +30,38 @@ export default class CurrentWeather extends Component {
     }
 
     render() {
-        const {name} = this.state.data;
+        const {name} = this.state.data ? this.state.data : '';
         const {country} = this.state.data.sys ? this.state.data.sys : '';
-        const {icon} = this.state.data.weather ? this.state.data.weather[0] : '';
+        const {icon, description} = this.state.data.weather ? this.state.data.weather[0] : '';
+        const {availableUnits} = this.state;
+        const {unitType, onUnitChange} = this.props;
+
+        let {temp} = this.state.data.main ? this.state.data.main : '';
+        switch (unitType) {
+            case 'C': temp -= 273.15; break;
+            case 'F': temp = temp * 9/5 - 459.67; break;
+            default: break;
+        }
+        temp = temp.toFixed(1);
+
         return (
             <div className={`content ${this.props.blured ? 'blured' : ''}`}>
-                <h1 className="title">{name+' ('+country+')'}</h1>
-                <img className="weather-icon" src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="not yet"/>
+                <h1 className="title">{name} | {country}</h1>
+                <p className="description">{description}</p>
+                <img className="weather-icon" src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt={description}/>
+                <span className="temperature">{temp}</span>
+                <ul className="temperature-units">
+                    <li className="unit" onClick={this.toggleAvailableUnitsVisib}>
+                        °{unitType}
+                    </li>
+                    {this.state.isAvailableUnitsShown
+                        ? availableUnits.map(unit =>
+                            unit !== unitType
+                                ? <li className="unit" onClick={() => onUnitChange(unit)}>°{unit}</li>
+                                : null)
+                        : null
+                    }
+                </ul>
             </div>
         );
     }

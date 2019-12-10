@@ -1,3 +1,4 @@
+@import "./variables"
 @import "./base"
 
 .header
@@ -19,8 +20,11 @@
     z-index: 1
     -webkit-clip-path: inset(0 0 0 0 round 30px)
     clip-path: inset(0 0 0 0 round 30px)
-    .blured
-        filter: blur(8px)
+
+.content
+    transition: all .3s ease
+    &.blured
+        filter: blur(3px)
         opacity: .5
 
 .backdrop-blur::before
@@ -39,19 +43,19 @@
     filter: blur(30px)
 
 .title
-    text-transform: uppercase
+    text-transform: capitalize
     width: 100%
+
+.description
+  text-transform: capitalize
 
 .search-bar
     width: 100%
     .search-field
-        appearance: none
         width: 100%
-        -webkit-appearance: none
-        -moz-appearance: none
         font-size: 16px
         color: white
-        background: #0000005c
+        background: $dark-bg
         border-top-right-radius: 5px
         border-top-left-radius: 5px
         border-width: 0
@@ -59,7 +63,7 @@
 
 .hint-list
     position: absolute
-    background-color: #0000005c
+    background-color: $dark-bg
     padding: 15px
     border-bottom-left-radius: 5px
     border-bottom-right-radius: 5px
@@ -118,6 +122,14 @@
 
 .current-weather-icon i
     font-size: 6em
+
+.temperature
+    font-size: 60px
+
+.temperature-units
+    .unit
+        font-size: 24px
+        cursor: pointer
 
 @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)))
     .backdrop-blur

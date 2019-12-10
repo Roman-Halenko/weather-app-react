@@ -9,7 +9,9 @@ export default class App extends Component {
     state = {
         defaultCityId: 703447,
         selectedCityId: null,
-        foundCities: []
+        foundCities: [],
+        searchFocused: false,
+        temperatureUnit: 'C'
     }
 
     onSearchInput = ( {target} ) => {
@@ -31,19 +33,42 @@ export default class App extends Component {
         this.setState({selectedCityId: selectedCity.id});
     }
 
+    onSearcFocus = () => {
+        this.setState({searchFocused: true});
+    }
+
+    onSearcBlur = () => {
+        setTimeout(() => {
+            this.setState({searchFocused: false})
+        }, 100)
+    }
+
+    changeTemperatureUnit = unit => {
+        this.setState({temperatureUnit: unit})
+    }
+
     render() {
-        const {selectedCityId, defaultCityId, foundCities} = this.state
+        const { selectedCityId,
+            defaultCityId,
+            foundCities,
+            searchFocused,
+            temperatureUnit } = this.state
 
         return (
             <div className="container backdrop-blur">
                 <Search
                     select={this.onListItemSelect}
                     onSearchInput={this.onSearchInput}
+                    onSearcFocus={this.onSearcFocus}
+                    onSearcBlur={this.onSearcBlur}
                     foundCities={foundCities}
+                    searchFocused={searchFocused}
                 />
                 <CurrentWeather
                     cityId={selectedCityId || defaultCityId}
-                    blured={foundCities.length > 0 ? true : false}
+                    blured={foundCities.length > 0 && searchFocused ? true : false}
+                    unitType={temperatureUnit}
+                    onUnitChange={this.changeTemperatureUnit}
                 />
             </div>
         );
