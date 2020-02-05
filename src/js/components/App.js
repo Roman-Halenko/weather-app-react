@@ -1,7 +1,9 @@
 import React, { Component } from "react"
 import Search from "./Search"
-import {cityList} from '../Data';
+import {firebaseConfig} from '../Data';
 import CurrentWeather from "./CurrentWeather"
+import firebase from 'firebase/app';
+import 'firebase/database';
 
 
 export default class App extends Component {
@@ -14,18 +16,29 @@ export default class App extends Component {
         temperatureUnit: 'C'
     }
 
+    firebaseApp = firebase.initializeApp(firebaseConfig);
+    database = this.firebaseApp.database();
+
     onSearchInput = ( {target} ) => {
         let userInput = target.value.replace(/[^\w\s]/gi, '');
         if (userInput === '' || userInput === ' ') {
             this.setState({foundCities: []});
         } else {
             let regex = new RegExp(userInput, 'i');
-            let relevantСities = cityList.filter( e => e.name.match(regex) ).sort();
-            let closestCities = relevantСities.slice(0, 6);
-            closestCities.forEach(e => {
-                e.html = e.name.replace(regex, match => `<u>${match}</u>`) + `, ${e.country}`
-            });
-            this.setState({foundCities: closestCities});
+            this.database.ref('/').orderByChild('name')
+                .startAt(userInput)
+                .limitToFirst(6)
+                .once('value', snap => {
+                    let relevantСities = Object.values(snap.val())
+                        .filter(e => e.name.match(regex));
+
+                    relevantСities.forEach(e => {
+                        e.html = e.name.replace(regex, match =>
+                            `<u>${match}</u>`) + `, ${e.country}`;
+                        });
+
+                    this.setState({foundCities: relevantСities});
+                });
         }
     }
 

@@ -10,7 +10,7 @@ class AutoComplete extends Component {
         const {foundCities} = this.props;
 
         return (
-            <ul className="hint-list">
+            <ul className="auto-complete">
                 {foundCities.map(city => (
                     <ListItem
                         select={this.props.select}
