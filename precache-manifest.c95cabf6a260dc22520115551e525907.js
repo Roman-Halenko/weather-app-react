@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "7fccedc98aa2fbf66e51",
-    "url": "/weather-app-react/static/css/main.a6b9190d.chunk.css"
+    "revision": "44767ca067c80d956cea",
+    "url": "/weather-app-react/static/css/main.0b8b48fe.chunk.css"
   },
   {
-    "revision": "7fccedc98aa2fbf66e51",
-    "url": "/weather-app-react/static/js/main.3a759c97.chunk.js"
+    "revision": "44767ca067c80d956cea",
+    "url": "/weather-app-react/static/js/main.0b8f53b8.chunk.js"
   },
   {
     "revision": "b246a4fc453f9ee8e4e8",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/weather-app-react/static/media/cold-daylight.008c9c8c.jpg"
   },
   {
-    "revision": "5a43b87ca3fbb1f41d1cf05029b5ff7a",
+    "revision": "637c612d815499b6153a277a893c90b1",
     "url": "/weather-app-react/index.html"
   }
 ];
