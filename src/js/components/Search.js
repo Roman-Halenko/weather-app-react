@@ -9,6 +9,7 @@ export default class Search extends Component {
         return (
             <div className='search-bar' onFocus={onSearcFocus} onBlur={onSearcBlur}>
                 <input
+                    placeholder='Search'
                     className='search-field'
                     type='search'
                     onChange={onSearchInput}

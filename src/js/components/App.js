@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import Search from "./Search"
 import {firebaseConfig} from '../Data';
 import CurrentWeather from "./CurrentWeather"
+import {WeatherForecast} from "./WeatherForecast"
 import firebase from 'firebase/app';
 import 'firebase/database';
 
@@ -60,6 +61,17 @@ export default class App extends Component {
         this.setState({temperatureUnit: unit})
     }
 
+    calcTemperature = (value, unitName) => {
+
+        switch (unitName) {
+            case 'C': value -= 273.15; break;
+            case 'F': value = value * 9/5 - 459.67; break;
+            default: break;
+        }
+
+        return Math.round(value);
+    }
+
     render() {
         const { selectedCityId,
             defaultCityId,
@@ -80,8 +92,14 @@ export default class App extends Component {
                 <CurrentWeather
                     cityId={selectedCityId || defaultCityId}
                     blured={foundCities.length > 0 && searchFocused ? true : false}
-                    unitType={temperatureUnit}
+                    unitName={temperatureUnit}
                     onUnitChange={this.changeTemperatureUnit}
+                    calcTemperature={this.calcTemperature}
+                />
+                <WeatherForecast
+                    cityId={selectedCityId || defaultCityId}
+                    unitName={temperatureUnit}
+                    calcTemperature={this.calcTemperature}
                 />
             </div>
         );

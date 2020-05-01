@@ -2,141 +2,158 @@
 @import "./base"
 
 .header
-    display: flex
-    width: 100%
+  display: flex
+  width: 100%
 
 .container
-    position: relative
-    display: flex
-    align-content: flex-start
-    flex-wrap: wrap
-    box-sizing: border-box
-    background: linear-gradient(to top, #000000a6, #27273385)
-    padding: 25px
-    height: 500px
-    width: 750px
-    max-width: 90%
-    border-radius: 30px
-    z-index: 1
-    -webkit-clip-path: inset(0 0 0 0 round 30px)
-    clip-path: inset(0 0 0 0 round 30px)
+  position: relative
+  display: flex
+  align-content: space-between
+  flex-wrap: wrap
+  box-sizing: border-box
+  background: linear-gradient(to top, #000000a6, #27273385)
+  padding: 25px
+  height: 500px
+  width: 750px
+  max-width: 90%
+  border-radius: 30px
+  z-index: 1
+  -webkit-clip-path: inset(0 0 0 0 round 30px)
+  clip-path: inset(0 0 0 0 round 30px)
 
 .content
-    transition: all .3s ease
-    &.blured
-        filter: blur(4px)
-        opacity: .5
+  transition: all .3s ease
+  &.blured
+    filter: blur(4px)
+    opacity: .5
 
 .backdrop-blur::before
-    position: fixed
-    top: 0
-    left: 0
-    content: ''
-    background: linear-gradient(to top, #000000a6, #27273385), url(../image/cold-daylight.jpg)
-    background-position: center
-    background-repeat: no-repeat
-    background-size: cover
-    width: 100vw
-    height: 100vh
-    z-index: -1
-    -webkit-filter: blur(30px)
-    filter: blur(30px)
+  position: fixed
+  top: 0
+  left: 0
+  content: ''
+  background: linear-gradient(to top, #000000a6, #27273385), url(../image/cold-daylight.jpg)
+  background-position: center
+  background-repeat: no-repeat
+  background-size: cover
+  width: 100vw
+  height: 100vh
+  z-index: -1
+  -webkit-filter: blur(30px)
+  filter: blur(30px)
 
 .title
-    text-transform: capitalize
-    width: 100%
+  text-transform: capitalize
+  width: 100%
 
 .description
   text-transform: capitalize
 
 .search-bar
+  width: 100%
+  position: relative
+  .search-field
     width: 100%
-    position: relative
-    .search-field
-        width: 100%
-        font-size: 16px
-        color: white
-        background: $dark-bg
-        border-top-right-radius: 5px
-        border-top-left-radius: 5px
-        border-width: 0
-        padding: 10px 20px
+    font-size: 16px
+    color: white
+    background: $dark-bg
+    border-top-right-radius: 5px
+    border-top-left-radius: 5px
+    border-width: 0
+    padding: 10px 20px
 
 .auto-complete
-    position: absolute
-    width: 100%
-    background-color: $dark-bg
-    padding: 15px
-    border-bottom-left-radius: 5px
-    border-bottom-right-radius: 5px
-    z-index: 5
-    box-sizing: border-box
-    li
-        position: relative
-        text-align: center
-        font-weight: 200
-        letter-spacing: 1px
-        cursor: pointer
-        padding: 8px 0
-        color: #ffffffbf
-        transition: all 200ms linear
-        &::after
-            content: ''
-            position: absolute
-            left: 50%
-            bottom: 0
-            transform: translateX(-50%)
-            width: 80%
-            border-bottom: 1px solid #73737385
-        &:hover
-            color: #fff
-            background: linear-gradient(90deg, #46464612, #3131317d, #46464612)
+  position: absolute
+  width: 100%
+  background-color: $dark-bg
+  padding: 15px
+  border-bottom-left-radius: 5px
+  border-bottom-right-radius: 5px
+  z-index: 5
+  box-sizing: border-box
+  li
+    position: relative
+    text-align: center
+    font-weight: 200
+    letter-spacing: 1px
+    cursor: pointer
+    padding: 8px 0
+    color: #ffffffbf
+    transition: all 200ms linear
+    &::after
+      content: ''
+      position: absolute
+      left: 50%
+      bottom: 0
+      transform: translateX(-50%)
+      width: 80%
+      border-bottom: 1px solid #73737385
+    &:hover
+      color: #fff
 
 
 .btn
-    border-radius: 5px
-    background: #7b7b7b47
-    border-width: 0
-    color: white
-    font-size: 16px
-    padding: 10px
+  border-radius: 5px
+  background: #7b7b7b47
+  border-width: 0
+  color: white
+  font-size: 16px
+  padding: 10px
 
 .weather-container
-    display: flex
-    flex-wrap: wrap
-    width: 100%
-    justify-content: space-between
-    height: 70%
+  display: flex
+  flex-wrap: wrap
+  width: 100%
+  justify-content: space-between
+  height: 70%
 
 .weather-forecast
-    background-color: #323232
-    border-radius: 15px
-    width: 35%
+  display: flex
+  justify-content: space-between
+  background: linear-gradient(to top, $dark-bg, transparent)
+  border-bottom-left-radius: 15px
+  border-bottom-right-radius: 15px
+  padding-bottom: 15px
+  width: 100%
+  li
+    flex-grow: 1
+    display: flex
+    flex-direction: column
+    align-items: center
+    .min-temp
+      opacity: .6
 
 .current-weather
-    padding: 10px
-    background-color: #323232
-    border-radius: 15px
-    width: 60%
+  padding: 10px
+  background-color: #323232
+  border-radius: 15px
+  width: 60%
 
 .weather-icon
-    width: 80px
-    height: 80px
+  width: 80px
+  height: 80px
 
 .current-weather-icon i
-    font-size: 6em
+  font-size: 6em
 
 .temperature
-    font-size: 60px
+  font-size: 60px
+  display: inline-block
 
 .temperature-units
-    .unit
-        font-size: 24px
-        cursor: pointer
+  display: inline-block
+  vertical-align: top
+  .unit
+    font-size: 24px
+    cursor: pointer
+    &:not(:first-child)
+      opacity: .3
+    &:hover
+      opacity: 1
 
 @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)))
-    .backdrop-blur
-        -webkit-backdrop-filter: blur(30px)
-        backdrop-filter: blur(30px)
-        &::before
-            display: none
+  .backdrop-blur
+    -webkit-backdrop-filter: blur(30px)
+    backdrop-filter: blur(30px)
+    &::before
+      display: none

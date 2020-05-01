@@ -4,7 +4,7 @@ import {API} from "../Data"
 
 export default class CurrentWeather extends Component {
     state = {
-        data: {},
+        weatherData: {},
         availableUnits: ['C', 'F', 'K'],
         isAvailableUnitsShown: false
     }
@@ -41,38 +41,36 @@ export default class CurrentWeather extends Component {
     }
 
     render() {
-        const {name} = this.state.data ? this.state.data : '';
-        const {country} = this.state.data.sys ? this.state.data.sys : '';
-        const {icon, description} = this.state.data.weather ? this.state.data.weather[0] : '';
-        const {availableUnits} = this.state;
-        const {unitType, onUnitChange} = this.props;
+        if (Object.keys(this.state.weatherData).length === 0) return null;
 
-        let {temp} = this.state.data.main ? this.state.data.main : '';
-        switch (unitType) {
-            case 'C': temp -= 273.15; break;
-            case 'F': temp = temp * 9/5 - 459.67; break;
-            default: break;
-        }
-        temp = temp.toFixed(1);
+        const {dt, icon, description, country, name, temperature} = this.state.weatherData;
+        const {availableUnits} = this.state;
+        const {unitName, onUnitChange, blured} = this.props;
+        const dataCalcDate = new Date(dt*1000);
+        const dataCalcDay = dataCalcDate.toLocaleDateString('en', {weekday: 'long'});
+        const dataCalcTime = `${dataCalcDate.getHours()}:${dataCalcDate.getMinutes()}`;
+        const temp = this.props.calcTemperature(temperature, unitName);
 
         return (
-            <div className={`content ${this.props.blured ? 'blured' : ''}`}>
-                <h1 className="title">{name} | {country}</h1>
+            <div className={`content ${blured ? 'blured' : ''}`}>
+                <h1 className="title">{name}, {country}</h1>
+                <span>{dataCalcDay} {dataCalcTime.padStart(2, '0')}</span>
                 <p className="description">{description}</p>
                 <img className="weather-icon" src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt={description}/>
-                <span className="temperature">{temp}</span>
-                <ul className="temperature-units">
-                    <li className="unit" onClick={this.toggleAvailableUnitsVisib}>
-                        °{unitType}
-                    </li>
-                    {this.state.isAvailableUnitsShown
-                        ? availableUnits.map(unit =>
-                            unit !== unitType
-                                ? <li className="unit" onClick={() => onUnitChange(unit)}>°{unit}</li>
-                                : null)
-                        : null
-                    }
-                </ul>
+                <div className="temperature">{temp}
+                    <ul className="temperature-units">
+                        <li className="unit" onClick={this.toggleAvailableUnitsVisib}>
+                            °{unitName}
+                        </li>
+                        {this.state.isAvailableUnitsShown
+                            ? availableUnits.map(unit =>
+                                unit !== unitName
+                                    ? <li className="unit" key={unit} onClick={() => onUnitChange(unit)}>°{unit}</li>
+                                    : null)
+                            : null
+                        }
+                    </ul>
+                </div>
             </div>
         );
     }
