@@ -9,10 +9,21 @@ export default class CurrentWeather extends Component {
         isAvailableUnitsShown: false
     }
 
-    getWeatherData = (id) => {
-        fetch( API(id) )
-            .then(response => response.json())
-            .then(response => this.setState({ data: response }))
+    getWeatherData = cityId => {
+        fetch( API(cityId) )
+            .then( response => response.json())
+            .then( response => {
+                let weatherData = {
+                    dt: response.dt,
+                    country: response.sys.country,
+                    name: response.name,
+                    icon: response.weather[0].icon,
+                    description: response.weather[0].description,
+                    temperature: response.main.temp,
+                };
+
+                this.setState({weatherData: weatherData})
+            })
     }
 
     toggleAvailableUnitsVisib = () => {

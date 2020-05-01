@@ -1,8 +1,8 @@
-const apiURL = 'https://api.openweathermap.org/data/2.5/weather?id=';
-const appID = '&APPID=1d0043e9a6077c0e96a2cea071bf251b';
+const apiURL = 'https://api.openweathermap.org/data/2.5/';
+const appID = '1d0043e9a6077c0e96a2cea071bf251b';
 
-export function API(cityID) {
-    return (apiURL + cityID + appID);
+export function API(cityID, period = 'weather') {
+    return `${apiURL + period}?id=${cityID}&APPID=${appID}`;
 }
 
 export const firebaseConfig = {
