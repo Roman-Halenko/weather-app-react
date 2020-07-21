@@ -1,31 +1,37 @@
 import React from 'react';
+import {weatherIcon} from '../../../Data';
 
 const SingleDayWeather = ({day, weatherData, unitName, calcTemperature}) => {
 
-    function getTemp(minmax) {
-        return weatherData.reduce((acc, period) => {
-            if (acc === undefined) {
-                if (minmax === 'min') {
-                    acc = period.main.temp_min;
-                } else if (minmax === 'max') {
-                    acc = period.main.temp_max;
-                }
-            } else {
-                if (minmax === 'min') {
-                    acc = period.main.temp_min < acc ? period.main.temp_min : acc;
-                } else if (minmax === 'max') {
-                    acc = period.main.temp_max > acc ? period.main.temp_max : acc;
-                }
-            }
+    function getTempRange() {
+
+        return weatherData.reduce( (acc, period) => {
+
+            const {temp_min, temp_max} = period.main;
+
+            acc.min = temp_min < acc.min ? temp_min : acc.min;
+            acc.max = temp_max > acc.max ? temp_max : acc.max;
+
             return acc;
-        }, undefined);
+
+        }, {min: Infinity, max: -Infinity});
     }
 
-    const weatherIconCode = weatherData[0].weather[0].icon;
-    const weatherIconUrl = `http://openweathermap.org/img/wn/${weatherIconCode}@2x.png`;
+    const weatherIconCode = weatherData.reduce( (acc, value) => {
+
+        const icon = value.weather[0].icon.replace(/[a-z]/g, '');
+
+        acc[icon] = acc.hasOwnProperty(icon) ? acc[icon] + 1 : 1;
+
+        return acc;
+    }, {});
+
+    const wic = Object.keys(weatherIconCode).reduce((a, b) =>
+        weatherIconCode[a] > weatherIconCode[b] ? a : b);
+
+    const weatherIconUrl = weatherIcon(`${wic}d`);
     const weatherDecription = weatherData[0].weather[0].description;
-    const tempMin = calcTemperature( getTemp('min'), unitName );
-    const tempMax = calcTemperature( getTemp('max'), unitName );
+    const tempRange = getTempRange();
 
     return (
         <li key={weatherData[0].dt}>
@@ -34,10 +40,9 @@ const SingleDayWeather = ({day, weatherData, unitName, calcTemperature}) => {
                 src={weatherIconUrl}
                 alt={weatherDecription}
             />
-            <div>{tempMax}°
-                <span className="min-temp"> {tempMin}°</span>
+            <div>{calcTemperature(tempRange.max, unitName)}°
+                <span className="min-temp"> {calcTemperature(tempRange.min, unitName)}°</span>
             </div>
-            
         </li>
     )
 }

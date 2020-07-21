@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import {API} from "../Data"
+import {API, weatherIcon} from "../Data"
 
 
 export default class CurrentWeather extends Component {
@@ -18,6 +18,7 @@ export default class CurrentWeather extends Component {
                     country: response.sys.country,
                     name: response.name,
                     icon: response.weather[0].icon,
+                    id: response.weather[0].id,
                     description: response.weather[0].description,
                     temperature: response.main.temp,
                 };
@@ -48,15 +49,19 @@ export default class CurrentWeather extends Component {
         const {unitName, onUnitChange, blured} = this.props;
         const dataCalcDate = new Date(dt*1000);
         const dataCalcDay = dataCalcDate.toLocaleDateString('en', {weekday: 'long'});
-        const dataCalcTime = `${dataCalcDate.getHours()}:${dataCalcDate.getMinutes()}`;
+        const dataCalcTime = {
+            hours: `${dataCalcDate.getHours()}`.padStart(2, '0'),
+            minutes: `${dataCalcDate.getMinutes()}`.padStart(2, '0')
+        }
+
         const temp = this.props.calcTemperature(temperature, unitName);
 
         return (
             <div className={`content ${blured ? 'blured' : ''}`}>
                 <h1 className="title">{name}, {country}</h1>
-                <span>{dataCalcDay} {dataCalcTime.padStart(2, '0')}</span>
+                <span>{dataCalcDay} {dataCalcTime.hours}:{dataCalcTime.minutes}</span>
                 <p className="description">{description}</p>
-                <img className="weather-icon" src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt={description}/>
+                <img className="weather-icon" src={weatherIcon(icon)} alt={description}/>
                 <div className="temperature">{temp}
                     <ul className="temperature-units">
                         <li className="unit" onClick={this.toggleAvailableUnitsVisib}>
@@ -65,7 +70,7 @@ export default class CurrentWeather extends Component {
                         {this.state.isAvailableUnitsShown
                             ? availableUnits.map(unit =>
                                 unit !== unitName
-                                    ? <li className="unit" key={unit} onClick={() => onUnitChange(unit)}>°{unit}</li>
+                                    ? <li className="unit" key={unit} onClick={() => onUnitChange(unit)}>{unit}</li>
                                     : null)
                             : null
                         }

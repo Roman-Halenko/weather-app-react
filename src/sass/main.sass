@@ -11,7 +11,7 @@
   align-content: space-between
   flex-wrap: wrap
   box-sizing: border-box
-  background: linear-gradient(to top, #000000a6, #27273385)
+  background: linear-gradient(to top, #0000000d, #17174440)
   padding: 25px
   height: 500px
   width: 750px
@@ -32,7 +32,7 @@
   top: 0
   left: 0
   content: ''
-  background: linear-gradient(to top, #000000a6, #27273385), url(../image/cold-daylight.jpg)
+  background: linear-gradient(to top, #0000000d, #17174440), url(../image/cold-daylight.jpg)
   background-position: center
   background-repeat: no-repeat
   background-size: cover
@@ -110,11 +110,11 @@
 .weather-forecast
   display: flex
   justify-content: space-between
-  background: linear-gradient(to top, $dark-bg, transparent)
   border-bottom-left-radius: 15px
   border-bottom-right-radius: 15px
   padding-bottom: 15px
   width: 100%
+  overflow-x: scroll
   li
     flex-grow: 1
     display: flex
@@ -130,24 +130,37 @@
   width: 60%
 
 .weather-icon
-  width: 80px
-  height: 80px
+  text-shadow: 3px 3px 4px #0000001a
+  font-size: 85px
+  max-width: 100px
+  max-height: 100px
 
 .current-weather-icon i
   font-size: 6em
 
 .temperature
   font-size: 60px
-  display: inline-block
+  display: inline-flex
+  align-items: flex-start
 
 .temperature-units
-  display: inline-block
-  vertical-align: top
+  display: inline-flex
+  flex-grow: 0
   .unit
+    display: inline-flex
+    align-items: center
     font-size: 24px
     cursor: pointer
     &:not(:first-child)
       opacity: .3
+      margin-left: 6px
+      &::before
+        content: ''
+        display: inline-block
+        margin-right: 6px
+        width: 1px
+        height: .5em
+        background: #fff
     &:hover
       opacity: 1
 
