@@ -44,6 +44,7 @@ export default class App extends Component {
     }
 
     onListItemSelect = selectedCity => {
+        if (!selectedCity) return;
         this.setState({selectedCityId: selectedCity.id});
     }
 

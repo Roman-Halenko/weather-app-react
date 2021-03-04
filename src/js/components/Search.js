@@ -1,23 +1,22 @@
-import React, {Component} from 'react';
-import AutoComplete from './AutoComplete';
+import React from 'react';
+// import AutoComplete from './AutoComplete';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
-export default class Search extends Component {
+export default function Search(props) {
 
-    render() {
-        const {foundCities, onSearchInput, onSearcFocus, onSearcBlur, searchFocused} = this.props;
+    const {select, foundCities, onSearchInput, onSearcFocus, onSearcBlur} = props;
 
-        return (
-            <div className='search-bar' onFocus={onSearcFocus} onBlur={onSearcBlur}>
-                <input
-                    placeholder='Search'
-                    className='search-field'
-                    type='search'
-                    onChange={onSearchInput}
-                />
-                {foundCities.length && searchFocused
-                    ? <AutoComplete select={this.props.select} foundCities={foundCities}/>
-                    : null}
-            </div>
-        )
-    }
+    return (
+        <div className='search-bar' onFocus={onSearcFocus} onBlur={onSearcBlur}>
+            <Autocomplete
+                id="combo-box-demo"
+                options={foundCities}
+                getOptionLabel={ option => `${option.name}, ${option.country}` }
+                onChange={ (e, val) => select(val) }
+                blurOnSelect={true}
+                renderInput={ params => <TextField {...params} label="Search" variant="outlined" onChange={(e) => onSearchInput(e)} />}
+            />
+        </div>
+    )
 }
